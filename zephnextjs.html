@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zephrine</title>
+    <meta name="description" content="Sv danzd, Sebutkan your name biar gw sv">
+    <meta name="keywords" content="how long will this go on?">
+    <meta property="og:title" content="zephrine">
+    <meta property="og:description" content="Sv danzd, Sebutkan your name biar gw sv">
+    <meta property="og:url" content="https://www.zephrine.live">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://files.catbox.moe/5zfhmx.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .profile-card {
+            width: 100%;
+            max-width: 350px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        .profile-info {
+            text-align: center;
+            padding: 0 20px 15px;
+        }
+        
+        .avatar-container {
+            display: inline-block;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            margin-bottom: 12px;
+        }
+        
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #000;
+            display: block;
+        }
+        
+        .profile-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+        
+        .name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .verified-badge {
+            color: #0095f6;
+            font-size: 1rem;
+        }
+        
+        .profile-bio {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .links-section {
+            padding: 0 20px 5px;
+        }
+        
+        .link-item {
+            display: block;
+            background: #121212;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        .link-item:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            border-color: #1db954;
+        }
+        
+        .link-icon {
+            margin-right: 6px;
+            width: 14px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .visitor-section {
+            padding: 0 20px 15px;
+            margin-top: -5px;
+        }
+        
+        .visitor-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #121212;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        .visitor-text {
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .spotify-section {
+            padding: 0 20px 20px;
+        }
+        
+        .spotify-embed {
+            width: 100%;
+            height: 180px;
+            border: none;
+            border-radius: 10px;
+            background: #000;
+            margin-bottom: 15px;
+        }
+        
+        .lyric {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            padding: 15px 12px 0;
+            line-height: 1.5;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="profile-info">
+            <div class="avatar-container">
+                <img src="https://files.catbox.moe/5zfhmx.jpg" alt="Profile" class="avatar">
+            </div>
+            <div class="profile-name">
+                <h1 class="name">Danzddyy</h1>
+                <span class="verified-badge">
+                    <i class="fas fa-check-circle"></i>
+                </span>
+            </div>
+            <p class="profile-bio">Sv danzd, Sebutkan your name biar gw sv</p>
+        </div>
+        
+        <div class="links-section">
+            <a href="https://t.me/Ngekrek_sc_Ampas_Bot" class="link-item">
+                <i class="fas fa-plug link-icon"></i> Endpoint
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vb2E8NH4SpkD9oqVTo0d" class="link-item">
+                <i class="fab fa-telegram link-icon"></i> Telegram Channel
+            </a>
+            <a href="https://saweria.co/Danzddyy" class="link-item">
+                <i class="fas fa-heart link-icon"></i> Support
+            </a>
+        </div>
+        
+        <div class="visitor-section">
+            <div class="visitor-item">
+                <span class="visitor-text">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="spotify-section">
+            <iframe src="https://open.spotify.com/embed/playlist/5A5GK0C491InuajSjrYTP2?si=ersyJwMbQrK0RWJvjF4aUw" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media" 
+                    class="spotify-embed">
+            </iframe>
+            <p class="lyric">Danzddyy.</p>
+        </div>
+    </div>
+
+    <script>
+        // Visitor counter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate visitor count loading
+            setTimeout(function() {
+                const visitorElement = document.querySelector('.visitor-text');
+                if (visitorElement) {
+                    // In a real implementation, you would fetch this from an API
+                    const randomCount = Math.floor(Math.random() * 1000) + 500;
+                    visitorElement.textContent = `${randomCount} visitors`;
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
