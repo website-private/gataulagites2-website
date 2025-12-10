@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>#RizxvelzExerc1st. Deployment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Poppins,system-ui,Segoe UI,Roboto,sans-serif;background:#000;color:#e0d7ff;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    #particles{position:fixed;inset:0;z-index:0}
+    .card{position:relative;z-index:2;background:rgba(40,0,65,.7);backdrop-filter:blur(10px);padding:35px;border-radius:18px;box-shadow:0 0 35px rgba(162,0,255,.5);width:100%;max-width:380px;text-align:center;animation:fade .8s ease}
+    h2{margin-bottom:20px;font-size:24px;background:linear-gradient(90deg,#a600ff,#6a00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 15px rgba(162,0,255,.6)}
+    .input-group{position:relative;margin-bottom:18px}
+    .input-group input{width:100%;padding:12px 40px 12px 12px;border-radius:10px;border:none;background:rgba(255,255,255,.05);color:#fff;transition:.3s}
+    .input-group input:focus{outline:none;box-shadow:0 0 12px #a600ff}
+    .input-group i{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#bb86fc}
+    button{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#a600ff,#6a00ff);color:#fff;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .3s;box-shadow:0 0 18px rgba(150,0,255,.6)}
+    button:hover{transform:scale(1.05)}
+    #result{margin-top:18px;font-size:13px;color:#bb86fc;word-break:break-word}
+    .footer{margin-top:24px;font-size:13px;color:#aaa}
+    .footer a{display:inline-block;margin:6px 5px;padding:8px 14px;border-radius:12px;background:linear-gradient(135deg,#6a00ff,#bb00ff);color:#fff;font-size:12px;text-decoration:none;box-shadow:0 0 15px rgba(162,0,255,.5)}
+    .created-by{margin-top:10px;font-size:12px;color:#666}
+    @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .muted{opacity:.85}
+    .toast {position: fixed;top: 20px;right: 20px;background: rgba(50, 0, 80, 0.9);color: #fff;padding: 12px 20px;border-radius: 8px;font-size: 14px;z-index: 1000;opacity: 0;transform: translateY(-20px);transition: all 0.4s ease;box-shadow: 0 4px 15px rgba(0,0,0,0.3)}
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.success { border-left: 5px solid #44ff44; }
+    .toast.error { border-left: 5px solid #ff4444; }
+  </style>
+</head>
+<body>
+  <div id="particles"></div>
+
+  <!-- Deploy -->
+  <div class="card" id="deployBox">
+    <h2>🚀 Website Generator</h2>
+    <div class="input-group">
+      <input type="text" id="siteName" placeholder="Website Name #No spaces allowed" />
+      <i class="fas fa-globe"></i>
+    </div>
+    <div class="input-group">
+      <input type="file" id="htmlFile" accept=".html" />
+      <i class="fas fa-file-code"></i>
+    </div>
+    <button onclick="handleDeploy()">• Deploy Now</button>
+
+    <div id="result" class="muted"></div>
+    <div class="footer">
+      <a href="https://t.me/rizxvelzexct" target="_blank">👤 Contacts</a>
+      <a href="https://t.me/rizxvelzcomunity" target="_blank">📢 Channel - Information</a>
+      <div class="created-by">© 2024 RizxvelzExerc1st. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const vercelToken = "qRI88MtHaOujcodVbGH4szk2"; // token vercel
+
+    function showToast(msg, type="success") {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.className = "toast show " + type;
+      setTimeout(() => { toast.className = toast.className.replace("show",""); }, 3000);
+    }
+
+    async function handleDeploy(){
+      let siteName=document.getElementById('siteName').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-');
+      const fileEl=document.getElementById('htmlFile');
+      const out=document.getElementById('result');
+      out.textContent='';
+
+      if(!siteName || fileEl.files.length===0){showToast("⚠️ Isi nama dan upload file HTML!","error");return}
+      const file=fileEl.files[0];
+      const html=await file.text();
+
+      const payload={
+        name: siteName,
+        project: siteName,
+        target: "production",
+        files: [{ file: "index.html", data: html }],
+        projectSettings: { framework:null, buildCommand:null, devCommand:null, outputDirectory:null }
+      };
+
+      out.innerHTML='⏳ Deploying ke Vercel…';
+      try{
+        const res=await fetch("https://api.vercel.com/v13/deployments?skipAutoDetectionConfirmation=1",{
+          method:"POST",
+          headers:{Authorization:`Bearer ${vercelToken}`,"Content-Type":"application/json"},
+          body: JSON.stringify(payload)
+        });
+        const json=await res.json();
+        if(res.ok && json.url){
+          const url=`https://${siteName}.vercel.app`;
+          out.innerHTML=`✅ Berhasil!<br><a href="${url}" target="_blank">${url}</a>`;
+          showToast("✅ Deploy sukses!","success");
+        }else{
+          out.innerHTML=`❌ Gagal: ${json?.error?.message || json?.message || 'Unknown error'}`;
+          showToast("❌ Deploy gagal!","error");
+        }
+      }catch(e){
+        out.innerHTML=`❌ Koneksi gagal: ${e.message}`;
+        showToast("❌ Koneksi gagal!","error");
+      }
+    }
+  </script>
+
+  <!-- Particles background -->
+  <script src="https://cdn.jsdelivr.net/gh/jnicol/particleground/jquery.particleground.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded',function(){
+      particleground(document.getElementById('particles'),{
+        dotColor:'#bb86fc',
+        lineColor:'#6a00ff',
+        minSpeedX:.1,maxSpeedX:.3,minSpeedY:.1,maxSpeedY:.3,
+        density:10000,particleRadius:3
+      });
+    });
+  </script>
+</body>
+</html>
